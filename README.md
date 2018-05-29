@@ -1,5 +1,5 @@
 # Driver for Futaba-24-SD-01 VFDisplay
-schematic, pcb, driver, example
+Schematic, PCB, Driver, Example
 
 ## Scroll Action (driver based)
 ![action](images/display.gif)

@@ -53,7 +53,8 @@ schematic and PCB corrections
 ## Links
 http://www.futaba.com/products/display_modules/lcd_emulator/downloads/pdfs/LCD_Emulators.pdf  
 https://www.microchip.com/wwwproducts/en/ATtiny2313  
+http://www.ti.com/lit/ds/symlink/sn74hc595.pdf  
 http://www.tosharp.cn/ckfinder/userfiles/files/DATASHEET/IC/TD62783AFG(5%2CS%2CEL).pdf  
 http://www.ti.com/lit/an/slva252b/slva252b.pdf  
 https://www.noritake-elec.com/technology/general-technical-information/vfd-operation  
-https://threeneurons.wordpress.com/vfd-stuff/  
+https://threeneurons.wordpress.com/vfd-stuff/

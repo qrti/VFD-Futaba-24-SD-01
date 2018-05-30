@@ -1,4 +1,4 @@
-// spiTest for vfdFu24 qrt@qland.de 180520
+// time display example for vfdFu24 qrt@qland.de 180530
 
 #define SPIPARS			2000000, MSBFIRST, SPI_MODE3
 
@@ -8,7 +8,7 @@
 #define CMD_SETCUR		0                       // command set cursor 0..NUMDIGITS-1
 												
 #define CCO_FIRST		32                      // char code first
-#define CCO_CUST0		128                     //           custom 0..8 (unused)
+#define CCO_CUST0		128                     //           custom 0..7
 #define CCO_LAST		135                     //           last
 												
 #define CMD_CLRHOME		136                     // command clear home
@@ -18,13 +18,11 @@
 #define CMD_SCLON       140                     //         scroll on
 #define CMD_SCLOFF      141                     //                off
 
-												
 #define CMD_BRIGHT		192                     // command brightness 192..255 (64 steps)
 
-#define DEGCEL			128						// custom char degree celsius
-uint8_t CUCH0[] = { 0x60, 0x60, 0x3c, 0x42, 0x24 };
-
 #include <SPI.h>								// 50 MISO, 51 MOSI, 52 SCK, 53 SS
+#include <TimeLib.h>							// https://github.com/PaulStoffregen/Time
+#include "dateTimeCompiler.h"
 
 SPISettings settingsA(SPIPARS);
 
@@ -33,32 +31,33 @@ void setup()
 	Serial.begin(9600);
 	SPI.begin();
 
+	setTimeCompiler(__DATE__, __TIME__);
+
 	delay(1000);
 
-	SPI.beginTransaction(settingsA);
-	//SPI.endTransaction();
+	SPI.beginTransaction(settingsA); 
 
-	setCustomChar(0, CUCH0);
-
-	sendByte(CMD_SUPON);
-	sendByte(CMD_SCLON);				// includes CLR_HOME
-	sendByte(CMD_BRIGHT+32);
+	sendByte(CMD_SUPON);                // supply on
+	sendByte(CMD_SCLON);				// scroll on, includes CLR_HOME
+	sendByte(CMD_BRIGHT+32);            // mid brightness (from 0..63)
 }
 
 void loop()
 {
 	static char buf[32];
-	static uint32_t i;
+	static const char n[] = "\n\0"; 
+	static int t;
 
-	if(i % 100 == 0){
-		sprintf(buf, "%010lu\n", i);
-		Serial.write(buf);
-	}
+	sprintf(buf, "%s %02d.%02d.%04d %02d:%02d:%02d", dayShortStr(weekday()), day(), month(), year(), hour(), minute(), second());
+	printScroll(buf);	
 
-	sprintf(buf, "%010lu %c", i++, DEGCEL);
-	printScroll(buf);
+	strcat(buf, n);
+	Serial.write(buf);
 
-	delay(1000);
+	t = second();
+
+	while(second() == t)
+		;
 }
 
 void printScroll(const char *s)

@@ -8,7 +8,9 @@ Schematic, PCB, Driver, Example
 [-> source](source)
 
 **ATTINY2313 (Atmel) AVR assembler based driver**  
-\- 127 ASCII characters (with descender)  
+\- 127 ASCII characters (with descender)
+![chars](images/chars_0.png)
+![chars](images/chars_1.png)
 \- 8 user defined custom characters  
 \- optional character scroll  
 \- SPI slave interface  
@@ -16,7 +18,9 @@ Schematic, PCB, Driver, Example
 \- filament voltage control  
 \- display power off
 
-**Arduino C example**
+**Arduino examples**  
+\- scrolling time display  
+\- custom chars
 
 ## Display
 Front View (V3)  

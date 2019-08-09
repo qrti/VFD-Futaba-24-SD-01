@@ -44,11 +44,17 @@ PCB (V4)
 
 ![pcb](images/pcb.png)
 
+## Assemble
+I used [Avra 1.3.0 assembler](https://sourceforge.net/projects/avra/files/) and adapted the *tn2313def.inc* of AtmelStudio (commented out pragmas).  
+Alternatively you can adapt the point directives (.define) of my assembler source to make it work with AtmelStudio assembler.
+
 ## History
 __V3__  
 initial version  
 __V4__  
-schematic and PCB corrections
+schematic and PCB corrections  
+__V5__  
+software update, hex-files, assembler hint
 
 ## Links
 http://www.futaba.com/products/display_modules/lcd_emulator/downloads/pdfs/LCD_Emulators.pdf  
